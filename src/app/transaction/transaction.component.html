@@ -1,0 +1,31 @@
+<h3>Transactions</h3>
+
+<table>
+  <tr>
+    <th>Transaction Id</th>
+    <th>Transaction Type</th>
+    <th>Account Number</th>
+    <th>Amount</th>
+    <th>Transaction Date</th>
+  </tr>
+  <tr *ngFor="let aTransaction of transactions">
+    <td>{{aTransaction.TransactionId}}</td>
+    <td>{{aTransaction.TransactionType.TransTypeName}}</td>
+    <td>{{aTransaction.AccountNumber}}</td>
+    <td>{{aTransaction.Amount | currency}}</td>
+    <td>{{aTransaction.TransactionDate | date}}</td>
+  </tr>
+</table>
+
+<h3>Make Transaction</h3>
+<p>Transaction Ids: 1 - Deposit, 2 - Withdrawal, 3 - Transfer</p>
+<div>
+  <!-- Account Number: <input type="number" [(ngModel)]="transactionToAdd.AccountNumber"/><br> -->
+  Transaction Type Id:<br> <input type="number" [(ngModel)]="transactionToAdd.TransTypeId"/><br>
+  Transfer to Account (for transfer only):<br> <input type="number" [(ngModel)]="transactionToAdd.AccountForTransfer"/><br>
+  Amount:<br> <input type="number" min="0" oninput="this.value = Math.abs(this.value)"
+  [(ngModel)]="transactionToAdd.Amount"/><br>
+  <!-- Transaction Date: <input type="date" [(ngModel)]="transactionToAdd.TransactionDate"/><br> -->
+  <input type="button" value="Make Transaction" (click)="makeTransaction()" />
+</div>
+

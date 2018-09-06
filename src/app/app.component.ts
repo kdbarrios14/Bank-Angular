@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BankAngular';
+  constructor(private router:Router){}
+
+  Logout() {
+    localStorage.removeItem('Token');
+    this.router.navigate(['Login']);
+  }
 }

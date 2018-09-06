@@ -1,0 +1,30 @@
+<h3>Term Deposits</h3>
+
+<table>
+  <tr>
+    <th>Term Deposit Id</th>
+    <th>Member Id</th>
+    <th>Amount</th>
+    <th>Duration(Months)</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
+  <tr *ngFor="let aTD of tds">
+    <td>{{aTD.TermDepositId}}</td>
+    <td>{{aTD.MemberId}}</td>
+    <td>{{aTD.Amount | currency}}</td>
+    <td>{{aTD.Duration_Months}}</td>
+    <td>{{aTD.StartDate | date}}</td>
+    <td>{{aTD.EndDate | date}}</td>
+  </tr>
+</table>
+
+<h3>Add Term Deposit</h3>
+<div>
+  <!-- Member Id: <input type="number" [(ngModel)]="tdToAdd.MemberId" /><br> -->
+  Amount:<br> <input type="number" min="1000" [(ngModel)]="tdToAdd.Amount" /><br>
+  Duration(months):<br> <input type="number" min="0" oninput="this.value = Math.abs(this.value)"
+  [(ngModel)]="tdToAdd.Duration_Months" /><br>
+  Account Number:<br> <input type="number" [(ngModel)]="tdToAdd.AccountNumber" /><br>
+  <input type="button" value="Add Term Deposit" (click)="addTermDeposit()" />
+</div>

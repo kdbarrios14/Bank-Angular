@@ -1,0 +1,29 @@
+<h3>Members List</h3>
+<table>
+  <tr>
+    <th>Member Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let aMember of members">
+    <td>{{aMember.MemberId}}</td>
+    <td>{{aMember.FirstName}}</td>
+    <td>{{aMember.LastName}}</td>
+    <td>
+      <a [routerLink]="['Accounts', aMember.MemberId]">Accounts</a> |
+      <a [routerLink]="['TermDeposits', aMember.MemberId]">Term Deposits</a> |
+      <a [routerLink]="['Loans', aMember.MemberId]">Loans</a>
+    </td>
+  </tr>
+</table>
+
+<h3>Add Member</h3>
+<div>
+  First Name:<br> <input type="text" [(ngModel)]="memberToAdd.first" /><br>
+  Last Name:<br> <input type="text" [(ngModel)]="memberToAdd.last" /><br>
+  Email:<br> <input type="email" [(ngModel)]="memberToAdd.email" /><br>
+  <!-- Join Date: <input type="date" [(ngModel)]="memberToAdd.JoinDate" /><br> -->
+  <input type="button" value="Add Member" (click)="addMember()"/>
+</div>
+

@@ -1,0 +1,64 @@
+<h3>Loan List</h3>
+<div>
+  <table class="table table-hover">
+      <tr>
+      <th>Loan Id</th>
+      <th>Loan Type</th>
+      <th>Issue Date</th>
+      <th>Term (Years)</th>
+      <th>Amount</th>
+      <th>Amount Paid</th>
+      <th>Payment Date</th>
+     </tr>
+
+    <tr *ngFor = "let aloan of loans">
+      <td> {{aloan.LoanId}}</td>
+      <td> {{aloan.LoanType.LoanName}}</td>
+      <td> {{aloan.IssueDate | date}}</td>
+      <td> {{aloan.Term_Years}}</td>
+      <td> {{aloan.Amount | currency}}</td>
+      <td> {{aloan.AmountPaid | currency}}</td>
+      <td> {{aloan.PaymentDate | date}}</td>
+    </tr>
+  </table>
+</div>
+
+<h3>Add a loan</h3>
+<p>Loan Type Ids: 1 - Mortgage, 2 - Auto, 3 - Small Business, 4 - Home Equity</p>
+<form #loanForm="ngForm"></form>
+<div>
+  LoanType Id: <br><input type="text" [(ngModel)]="loanToAdd.LoanTypeId" required
+  name ="LoanTypeId" #LoanTypeId="ngModel"/>
+  <div [hidden]="LoanTypeId.valid || LoanTypeId.pristine"
+     class="alert alert-danger">
+  LoanType Id is required
+</div><br>
+<div>
+  Amount:<br> <input type="number" min="0" oninput="this.value = Math.abs(this.value)"
+   [(ngModel)]="loanToAdd.Amount" required 
+  name ="Amount" #Amount="ngModel"/>
+  <div [hidden]="Amount.valid || Amount.pristine"
+     class="alert alert-danger">
+  Amount is required
+</div><br>
+  Term(Years): <br><input type="number" min="0" oninput="this.value = Math.abs(this.value)"
+  [(ngModel)]="loanToAdd.Term_Years" required
+  name ="Term_Years" #Term_Years="ngModel"/>
+  <div [hidden]="Term_Years.valid || Term_Years.pristine"
+     class="alert alert-danger">
+  Term(Years) is required
+</div><br>
+  <input type="button" value="Add Loan" (click)="addLoan()" />
+</div>
+
+<h3>Loan Payment</h3>
+<form #paymentForm = "ngForm"></form>
+<div>
+  Loan Id: <br><input type="number" [(ngModel)]="paymentInfo.LoanId"/>
+  <br>
+  Amount: <br><input type="number" min="0" oninput="this.value = Math.abs(this.value)" 
+  [(ngModel)]="paymentInfo.Amount"/>
+  <br>
+  Account number:<br><input type="number" [(ngModel)]="paymentInfo.AccountNumber"/><br>
+  <input type="button" value="Make Payment" (click)='makePayment()'/>
+</div>
